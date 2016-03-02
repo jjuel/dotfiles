@@ -6,7 +6,7 @@ if [ -d ./dotfiles/ ]; then
 	mv dotfiles dotfiles.old
 fi
 
-#git clone https://github.com/jjuel/dotfiles.git
+git clone https://github.com/jjuel/dotfiles.git
 ln -sb dotfiles/.vimrc .
 ln -sb dotfiles/.bashrc .
 ln -sb dotfiles/.inputrc .
