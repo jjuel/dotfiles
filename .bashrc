@@ -117,5 +117,5 @@ fi
 bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
 
-PS1='\u@\h: \W \$ '
+PS1='\u@\h: \W\$ '
 
