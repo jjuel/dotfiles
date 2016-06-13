@@ -13,6 +13,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
+Plug 'vim-ruby/vim-ruby'
+Plug 'mattn/emmet-vim'
+Plug 'robertmeta/nofrils'
 
 call plug#end()
 
@@ -31,11 +34,14 @@ set nocursorcolumn
 set nocursorline
 set noshowmode
 
+"colorscheme nofrils-dark
 colorscheme molokai
 syntax on
 
 nmap <S-Enter> O<esc>
 nmap <CR> o<esc>
+
+set completeopt-=preview
 
 "========================================
 "================deoplete================
@@ -53,6 +59,7 @@ let g:go_highlight_build_constraints = 1
 
 let g:go_fmt_command = "goimports"
 let g:go_fmt_autosave = 1
+let g:go_goterm_enabled = 1
 
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_map_mode = { 'mode': 'active', 'passive_filetypes': ['go'] }
