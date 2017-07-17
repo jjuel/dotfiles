@@ -1,21 +1,24 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'fatih/molokai'
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go'
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Townk/vim-autoclose'
-Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
-Plug 'vim-ruby/vim-ruby'
 Plug 'mattn/emmet-vim'
 Plug 'robertmeta/nofrils'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-dispatch'
+Plug 'davidhalter/jedi-vim'
+Plug 'neomake/neomake'
+Plug 'jjuel/vim-monokai'
 
 call plug#end()
 
@@ -33,13 +36,18 @@ set number "Show line numbers
 set nocursorcolumn
 set nocursorline
 set noshowmode
+set tabstop=4
+set shiftwidth=4
+
 
 "colorscheme nofrils-dark
 colorscheme molokai
+"colorscheme monokai
 syntax on
 
 nmap <S-Enter> O<esc>
 nmap <CR> o<esc>
+inoremap jj <esc>
 
 set completeopt-=preview
 
