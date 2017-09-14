@@ -1,7 +1,7 @@
-archey
+screenfetch
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/jordan/.oh-my-zsh
+export ZSH=/home/jordan/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -70,9 +70,14 @@ export PATH=$PATH:$GOPATH/bin
 #export PATH=$HOME/anaconda/bin:$PATH
 
 #Add PSQL to PATH
-export PATH=/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH
+#export PATH=/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH
+
+#Prevent pip from installing into system Python
+export PIP_REQUIRE_VIRTUALENV=true
 
 source $ZSH/oh-my-zsh.sh
+
+export PATH=~/.npm_global/bin:$PATH
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
