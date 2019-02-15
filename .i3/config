@@ -22,19 +22,20 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:Hack 10
+font xft:FiraCode 10
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
+bindsym $mod+Return exec st
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
+# bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+d exec --no-startup-id rofi -show run
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -57,8 +58,8 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec palemoon
-bindsym $mod+F3 exec pcmanfm
+bindsym $mod+F2 exec firefox
+bindsym $mod+F3 exec st -e ranger
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec terminal -e 'mocp'
@@ -143,9 +144,9 @@ bindsym $mod+Ctrl+Left workspace prev
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
 set $ws1 "1:  Term"
-set $ws2 "2:  Chrome"
-set $ws3 "3:  Code"
-set $ws4 "4:  Slack"
+set $ws2 "2:  Editor"
+set $ws3 "3:  Browser"
+set $ws4 4
 set $ws5 5
 set $ws6 6
 set $ws7 7
@@ -183,7 +184,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
-assign [class="Chromium"] $ws2
+assign [class="Firefox"] $ws3
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
 
@@ -282,7 +283,7 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 # exec --no-startup-id blueman
 # exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
+# exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
@@ -324,31 +325,56 @@ set_from_resource $term_color15    color15
 # https://i3wm.org/dovs/userguide.html#variables
 # Changing the value of one of the variables will
 # effect all the areas with the same color.
-set $i3_background      #2B2C2B
-set $i3_text            #F9FAF9
-set $i3_separator       #454947
-set $i3_color1          #f9faf9
-set $i3_color2          #595B5B
-set $i3_color3          #353836
-set $i3_color4          #16A085
-set $i3_color5          #FDF6E3
-set $i3_color6          #EEE8D5
-set $i3_color7          #E5201D
-set $i3_color8          #808380
-set $i3_color9          #434745
-set $i3_color10         #454948
-set $i3_color11         #80FFF9
-set $i3_color12         #FDF6E3
-set $i3_color13         #CB4B16
-set $i3_color14         #268BD2
-set $i3_color15         #000000
-set $i3_color16         #ffffff
-set $i3_color17         #0c0c0c
+#
+#
+# Gruvbox Color Palette https://github.com/morhetz/gruvbox
+# background  bg
+# text        fg
+# separator   bg3
+# color1      bg0_h
+# color2      red
+# color3      green
+# color4      yellow
+# color5      blue
+# color6      purple
+# color7      aqua
+# color8      gray
+# color9      darkerGray
+# color10     lightRed
+# color11     lightGreen
+# color12     lightYellow
+# color13     lightBlue
+# color14     lightPurple
+# color15     lightAqua
+# color16     orange
+# color17     lightOrange
+#
+set $i3_background      #282828  
+set $i3_text            #ebdbb2  
+set $i3_separator       #665c54
+set $i3_color1          #1d2021  
+set $i3_color2          #cc241d  
+set $i3_color3          #98971a  
+set $i3_color4          #d79921  
+set $i3_color5          #458588  
+set $i3_color6          #b16286  
+set $i3_color7          #689d6a  
+set $i3_color8          #a89984  
+set $i3_color9          #928374  
+set $i3_color10         #fb4934  
+set $i3_color11         #b8bb26  
+set $i3_color12         #fabd2f  
+set $i3_color13         #83a598  
+set $i3_color14         #d3869b  
+set $i3_color15         #8ec07c  
+set $i3_color16         #d65d0e  
+set $i3_color17         #fe8019  
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	status_command i3status
-	position bottom
+	status_command i3blocks -c ~/.i3/i3blocks.conf
+	position top
+	tray_output none
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
@@ -356,7 +382,7 @@ bar {
 
 	bindsym button4 nop
 	bindsym button5 nop
-	font xft:Hack 10
+	font xft:FiraCode 10, xft:FontAwesome 10
 	strip_workspace_numbers no
 
 	colors {
@@ -365,11 +391,11 @@ bar {
         statusline $i3_text
         separator  $i3_separator
 
-#                                  border  backgr. text
-        focused_workspace   $i3_color1  $i3_color4  $i3_text
-        active_workspace    $i3_color2  $i3_color3  $i3_color5
-        inactive_workspace  $i3_color2  $i3_color3  $i3_color6
-        urgent_workspace    $i3_color4  $i3_color5  $i3_color7
+#                           border      backgr.          text
+        focused_workspace   $i3_color1  $i3_color5       $i3_text
+        active_workspace    $i3_color1  $i3_color5       $i3_text
+        inactive_workspace  $i3_color1  $i3_background   $i3_text
+        urgent_workspace    $i3_color1  $i3_color2       $i3_text
     }
 }
 
@@ -378,7 +404,7 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                 border      backgr.     text        indic.      child_border
-client.focused          $i3_color8  $i3_color8  $i3_color11 $i3_color12
+client.focused          $i3_color5  $i3_color8  $i3_color11 $i3_color12
 client.focused_inactive $i3_color9  $i3_color9  $i3_color4  $i3_color10
 client.unfocused        $i3_color9  $i3_color9  $i3_color4  $i3_color10
 client.urgent           $i3_color13 $i3_color12 $i3_color4  $i3_color14
@@ -392,7 +418,7 @@ client.background       $i3_background
 
 # Set inner/outer gaps
 gaps inner 10
-gaps outer -4
+gaps outer 15
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -405,6 +431,7 @@ smart_gaps on
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
+for_window [class="^.*"] border pixel 2
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
