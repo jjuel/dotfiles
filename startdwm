@@ -1,0 +1,21 @@
+#! /bin/sh
+
+dte(){
+    dte="$(date +"%a %b %d %l:%M%p")"
+    echo -e "$dte"	
+}
+
+mem() {
+	mem=`free -h | awk '/^Mem/ { print $3 "/" $2}'`
+	echo -e "$mem"
+}
+
+cpu() {
+	cpu=`ps axch -o cmd,%cpu | awk '{print sum += 2}' | tail -n 1`
+	echo -e "$cpu%"
+}
+
+while true; do
+	xsetroot -name "💻 $(cpu) | 🐏 $(mem) |  $(dte)"
+	sleep 1
+done &

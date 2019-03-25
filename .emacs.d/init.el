@@ -15,8 +15,10 @@
 
 ;; Themes
 ;; (require 'monokai-theme)
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'no-frils-monokai t)
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+;; (load-theme `gruvbox t)
+;; (load-theme 'no-frils-monokai t)
+(load-theme 'solarized-light t)
 
 ;; Org Mode
 (require 'org)
@@ -106,12 +108,30 @@
 ;; Font
 (set-face-attribute 'default nil :family "Source Code Pro" :weight 'normal)
 
+;; nlinum-relative
+(require 'nlinum-relative)
+(nlinum-relative-setup-evil)
+(add-hook 'prog-mode-hook 'nlinum-relative-mode)
+(add-hook 'text-mode-hook 'nlinum-relative-mode)
+(setq nlinum-relative-redisplay-delay 0)
+(setq nlinum-relative-current-symbol "")
+(setq nlinum-relative-offset 0)
+
+;; Circadian
+;;(use-package solarized-theme :ensure :defer)
+;;(use-package circadian
+;;  :ensure t
+;;  :config
+;;  (setq circadian-themes '(("8:00" . solarized-light)
+;;			  ("20:00" . solarized-dark)))
+;;  (circadian-setup))
+
 ;; Misc settings
 (electric-pair-mode 1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(global-linum-mode t)
-(setq linum-format "%2d ")
+;; (global-linum-mode t)
+;; (setq linum-format "%2d ")
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq inhibit-startup-screen t)
@@ -126,13 +146,13 @@
     ("a2549994584674df556cb9262d98e672c78880c11530910e8fd10a6632df090f" "c10b864fbfa36e29005672d4a21b784e30e329b99597aaaea627b3a96262194f" "6cdea8c1e42655a78a33d4450e8559c28614ac3aa1839f5d26c6d8dfd08400c3" "50a3c7cf0c1c6d4c455e33ec783af370ed2378492f7da6970bae95c66eccbb1e" "ba2fc98c567f6ca08b937a5be868963fb79af08b4d38f04ed39bc814adf1a52e" "1a7989c2d7d47474aa584e94b504033317ad21ab7a13b4a12afbc8463b500c10" default)))
  '(package-selected-packages
    (quote
-    (pipenv company-anaconda anaconda-mode flycheck-gometalinter flycheck magit ivy ledger-mode neotree company company-go go-dlv go-mode go-tag evil))))
+    (use-package circadian nlinum-relative solarized-theme gruvbox-theme pipenv company-anaconda anaconda-mode flycheck-gometalinter flycheck magit ivy ledger-mode neotree company company-go go-dlv go-mode go-tag evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :stipple nil :background "#282828" :foreground "#fdf4c1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "bB  " :family "Fira Code")))))
 
 (provide 'init)
 ;;; init.el ends here
