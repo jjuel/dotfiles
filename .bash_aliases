@@ -5,8 +5,8 @@ alias la='ls -a'
 alias cdp='cd ~/Projects'
 
 # Program Aliases
-alias v='vim'
-alias sv='sudo vim'
+alias v='nvim'
+alias sv='sudo nvim'
 alias p='sudo pacman'
 alias g='git'
 alias d='docker'

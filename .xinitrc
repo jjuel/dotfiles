@@ -3,6 +3,7 @@
 compton -b &
 nitrogen --restore &
 
-~/bin/startdwm &
+# ~/bin/startdwm &
+slstatus &
 
 exec dwm

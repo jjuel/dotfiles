@@ -140,7 +140,7 @@ ex ()
   fi
 }
 
-for file in ~/.{bash_prompt,bash_aliases,dockerfunc,bash_keybinds}; do
+for file in ~/.{bash_profile,bash_prompt,bash_aliases,bash_keybinds}; do
 	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
 		# shellcheck source=/dev/null
 		source "$file"
@@ -148,3 +148,6 @@ for file in ~/.{bash_prompt,bash_aliases,dockerfunc,bash_keybinds}; do
 done
 unset file
 
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash

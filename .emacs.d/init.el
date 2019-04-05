@@ -30,7 +30,7 @@
 
 ;; Agenda Mode
 (load-library "find-lisp")
-(setq org-agenda-files (find-lisp-find-files "~/org" "\.org$"))
+;; (setq org-agenda-files (find-lisp-find-files "~/org" "\.org$"))
 (setq org-agenda-custom-commands
       '(("d" "Daily agenda and all TODOs"
 	 ((agenda "" ((org-agenda-ndays 7)))
