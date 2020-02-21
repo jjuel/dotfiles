@@ -25,8 +25,10 @@
 (electric-pair-mode 1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(global-linum-mode t)
-(setq linum-format "%2d ")
+;; (global-linum-mode t)
+;; (setq linum-format "%2d ")
+(global-display-line-numbers-mode 1)
+(setq display-line-numbers-type 'relative)
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq inhibit-startup-screen t)
@@ -163,6 +165,10 @@
     c-basic-offset 4)
 (setq-default tab-width 4
     indent-tabs-mode t)
+
+;; Clojure
+(use-package cider
+  :ensure t)
 
 ;;Go
 (use-package go-mode
