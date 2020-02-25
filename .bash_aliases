@@ -1,14 +1,25 @@
-alias ls='ls -hN --color=auto --group-directories-first'
+alias ls='ls'
 alias ll='ls -la'
 alias la='ls -a'
+
+alias proxy='export http_proxy="" && export https_proxy=""'
 
 alias cdp='cd ~/Projects'
 
 # Program Aliases
 alias v='nvim'
 alias sv='sudo nvim'
-alias p='sudo pacman'
-alias g='git'
+# alias g='git'
 alias d='docker'
 alias dc='docker-compose'
-alias s='sc-im'
+alias weather='curl wttr.in'
+
+# Git
+alias gco='git checkout'
+alias gf='git fetch'
+alias gmg='git merge'
+alias gpl='git pull'
+alias gs='git status'
+alias ga='git add'
+alias gcmm='git commit -m'
+alias gpu='git push'
