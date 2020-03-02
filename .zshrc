@@ -24,6 +24,8 @@ alias d='docker'
 alias dc='docker-compose'
 alias weather='curl wttr.in'
 
+alias proxyoff='export http_proxy="" && export https_proxy=""'
+alias proxyon='export http_proxy="http://proxy.ameritas.com:8080" && https_proxy="http://proxy.ameritas.com:8080"' 
 # =============
 #    EXPORT
 # =============
@@ -79,7 +81,7 @@ setopt promptsubst
 
 NEWLINE=$'\n'
 PROMPT='%F{red}[%F{yellow}%n%F{green}@%F{blue}%m: %F{magenta}%~%F{red}] %F{reset}$(git_prompt_info)
-➜ '
+$ '
 # RPROMPT='$(git_prompt_info) (%W)'
 
 # ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
