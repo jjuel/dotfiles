@@ -24,8 +24,6 @@ alias d='docker'
 alias dc='docker-compose'
 alias weather='curl wttr.in'
 
-alias proxyoff='export http_proxy="" && export https_proxy=""'
-alias proxyon='export http_proxy="http://proxy.ameritas.com:8080" && https_proxy="http://proxy.ameritas.com:8080"' 
 # =============
 #    EXPORT
 # =============
