@@ -79,7 +79,7 @@ setopt promptsubst
 
 NEWLINE=$'\n'
 PROMPT='%F{red}[%F{yellow}%n%F{green}@%F{blue}%m: %F{magenta}%~%F{red}] %F{reset}$(git_prompt_info)
-➜ '
+$ '
 # RPROMPT='$(git_prompt_info) (%W)'
 
 # ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"

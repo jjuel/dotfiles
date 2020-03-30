@@ -1,9 +1,10 @@
 #! /bin/sh
 
-compton -b &
+# compton -b &
 nitrogen --restore &
 
-# ~/bin/startdwm &
+[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+
 slstatus &
 
 exec dwm
