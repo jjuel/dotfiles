@@ -162,9 +162,11 @@
 
 ;; C
 (setq c-default-style "linux"
-    c-basic-offset 4)
-(setq-default tab-width 4
+    c-basic-offset 2)
+(setq-default tab-width 2
     indent-tabs-mode t)
+(add-hook 'c-mode-hook #'lsp-deferred)
+(add-hook 'c++-mode-hook #'lsp-deferred)
 
 ;; Clojure
 (use-package cider
