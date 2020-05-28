@@ -34,9 +34,9 @@ function fish_prompt
 	set_color normal
 
 	printf "%s\n" ""
-	set_color yellow
+	set_color blue 
 	printf "%s" "❯"
-	set_color blue
+	set_color yellow
 	printf "%s" "❯"
 	set_color magenta
 	printf "%s " "❯"
