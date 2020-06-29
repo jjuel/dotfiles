@@ -1,9 +1,10 @@
 #! /bin/sh
 
-compton -b &
+# compton -b &
 nitrogen --restore &
 
 # ~/bin/startdwm &
-slstatus &
+# slstatus &
 
-exec dwm
+exec awesome
+# exec dwm

@@ -38,8 +38,8 @@
 
 ;; Font Settings
 (set-face-attribute 'default nil
-		    :family "Operator Mono"
-		    :height (* 14 10))
+		    :family "JetBrains Mono"
+		    :height (* 12 10))
 
 ;; Theme
 ;; (use-package dracula-theme
@@ -49,7 +49,7 @@
 ;; (use-package base16-theme
 ;;   :ensure t
 ;;   :init (load-theme 'base16-solarized-light t))
-(load-theme 'solarized-light t)
+(load-theme 'solarized-dark t)
 
 ;; Eshell
 (defun eshell/eclear ()
@@ -103,6 +103,13 @@
   :config
   (dap-mode t)
   (dap-ui-mode t))
+
+;; Deft
+(use-package deft
+  :bind ("<f8>" . deft)
+	:commands (deft)
+	:config (setq deft-directory "~/notes"
+	              deft-extensions '("md" "org")))	
 
 ;; Company
 (use-package company

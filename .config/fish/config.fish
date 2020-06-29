@@ -42,3 +42,17 @@ function fish_prompt
 	printf "%s " "❯"
 	set_color normal
 end
+
+# Abbreviations
+abbr g "git"
+abbr gs "git status"
+abbr ga "git add"
+abbr gpl "git pull"
+abbr gpu "git push"
+abbr gcm "git commit -m"
+abbr gd "git diff"
+abbr gco "git checkout"
+abbr gb "git branch"
+
+abbr ll "ls -la"
+abbr la "ls -a"
