@@ -19,14 +19,15 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 -- Load Debian menu entries
-local debian = require("debian.menu")
-local has_fdo, freedesktop = pcall(require, "freedesktop")
+-- local debian = require("debian.menu")
+-- local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 -- Load Widgets
 local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
-local volumebar_widget = require("awesome-wm-widgets.volumebar-widget.volumebar")
+local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 local lain = require("lain")
+local net_widgets = require("net_widgets")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -103,24 +104,6 @@ myawesomemenu = {
 local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
 local menu_terminal = { "open terminal", terminal }
 
-if has_fdo then
-    mymainmenu = freedesktop.menu.build({
-        before = { menu_awesome },
-        after =  { menu_terminal }
-    })
-else
-    mymainmenu = awful.menu({
-        items = {
-                  menu_awesome,
-                  { "Debian", debian.menu.Debian_menu.Debian },
-                  menu_terminal,
-                }
-    })
-end
-
-
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -131,11 +114,50 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(" %a %b %d, %l:%M%P", 15)
+mytextclock = wibox.widget.textclock(" %a %b %d,%l:%M%P", 15)
 
 -- Create systray widget
 mysystray = wibox.widget.systray()
 mysystray.set_base_size(35)
+
+-- local net_wireless = net_widgets.wireless({interface = "wlp61s0"})
+
+-- Create Lain net widget
+local wifi_icon = wibox.widget.imagebox(nil, false)
+local eth_icon = wibox.widget.imagebox()
+local net = lain.widget.net {
+    notify = "off",
+    wifi_state = "on",
+    eth_state = "on",
+    settings = function()
+        local eth0 = net_now.devices.eth0
+        if eth0 then
+            if eth0.ethernet then
+                eth_icon:set_image(ethernet_icon_filename)
+            else
+                eth_icon:set_image()
+            end
+        end
+
+        local wlan0 = net_now.devices.wlp61s0
+        if wlan0 then
+            if wlan0.wifi then
+                local signal = wlan0.signal
+                if signal < -83 then
+                    wifi_icon:set_image("/usr/share/icons/Papirus/symbolic/status/network-wireless-signal-weak-symbolic.svg")
+                elseif signal < -70 then
+                    wifi_icon:set_image("/usr/share/icons/Papirus/symbolic/status/network-wireless-signal-ok-symbolic.svg")
+                elseif signal < -53 then
+                    wifi_icon:set_image("/usr/share/icons/Papirus/symbolic/status/network-wireless-signal-good-symbolic.svg")
+                elseif signal >= -53 then
+                    wifi_icon:set_image("/usr/share/icons/Papirus/symbolic/status/network-wireless-signal-excellent-symbolic.svg")
+                end
+            else
+                wifi_icon:set_image("/usr/share/icons/Papirus/symbolic/status/network-wireless-disconnected-symbolic.svg")
+            end
+        end
+    end
+}
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -230,7 +252,7 @@ awful.screen.connect_for_each_screen(function(s)
 						'center'
 				),
         { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
+					 layout = wibox.layout.fixed.horizontal,
 						wibox.container.margin(
 								brightness_widget({
 										font = 'JetBrains Mono 10'
@@ -246,13 +268,13 @@ awful.screen.connect_for_each_screen(function(s)
 								0,10,5,5
 						),
 						wibox.container.margin(
-								volumebar_widget({
-										-- main_color = '#d33682',
-										mute_color = '#ff0000',
-										shape = 'rounded_bar'
-								}),
+								volume_widget({display_notification = true}),
 								0,10,5,5
 						),
+						wibox.container.margin(
+							wifi_icon,
+							0,10,8,5
+					  ),
             -- mysystray,
             -- s.mylayoutbox,
         },
@@ -262,7 +284,7 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    -- awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -352,9 +374,12 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
 		-- Media
-		awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q sset Master 2%+", false) end),
-		awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q sset Master 2%-", false) end),
-		awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -q sset Master toggle", false) end),
+		-- awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q sset Master 2%+", false) end),
+		awful.key({ }, "XF86AudioRaiseVolume", volume_widget.raise, {description = 'volume up', group = 'hotkeys'}),
+		--awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q sset Master 2%-", false) end),
+		awful.key({ }, "XF86AudioLowerVolume", volume_widget.lower, {description = 'volume down', group = 'hotkeys'}),
+		-- awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -q sset Master toggle", false) end),
+		awful.key({ }, "XF86AudioMute", volume_widget.toggle, {description = 'toggle mute', group = 'hotkeys'}),
 		awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("brightnessctl set 5%-", false) end),
 		awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("brightnessctl set +5%", false) end),
 
@@ -362,7 +387,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "p",     function () awful.util.spawn("rofi -show run") end,
               {description = "run dmenu", group = "launcher"}),
 		-- Browser
-    awful.key({ modkey },            "b",     function () awful.util.spawn("brave-browser") end,
+    awful.key({ modkey },            "b",     function () awful.util.spawn("firefox") end,
               {description = "Browser", group = "launcher"}),
 		-- Wicd
 		awful.key({ modkey },            "w",     function () awful.util.spawn("wicd-client") end,
@@ -373,20 +398,8 @@ globalkeys = gears.table.join(
 		-- flameshot
 		awful.key({ modkey },            "Print",     function () awful.util.spawn("flameshot gui") end,
               {description = "Flameshot gui", group = "launcher"}),
-
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"})
-    -- Menubar
-    -- awful.key({ modkey }, "p", function() menubar.show() end,
-    --           {description = "show the menubar", group = "launcher"})
+		awful.key({ modkey },            "e",     function () awful.util.spawn("emacs") end,
+			        {description = "Emacs", group = "launcher"})
 )
 
 clientkeys = gears.table.join(
