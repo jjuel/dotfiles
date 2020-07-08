@@ -253,6 +253,10 @@ awful.screen.connect_for_each_screen(function(s)
 				),
         { -- Right widgets
 					 layout = wibox.layout.fixed.horizontal,
+					 wibox.container.margin(
+							wifi_icon,
+							0,10,8,5
+					  ),
 						wibox.container.margin(
 								brightness_widget({
 										font = 'JetBrains Mono 10'
@@ -271,10 +275,6 @@ awful.screen.connect_for_each_screen(function(s)
 								volume_widget({display_notification = true}),
 								0,10,5,5
 						),
-						wibox.container.margin(
-							wifi_icon,
-							0,10,8,5
-					  ),
             -- mysystray,
             -- s.mylayoutbox,
         },
