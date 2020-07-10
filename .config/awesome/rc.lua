@@ -387,7 +387,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "p",     function () awful.util.spawn("rofi -show run") end,
               {description = "run dmenu", group = "launcher"}),
 		-- Browser
-    awful.key({ modkey },            "b",     function () awful.util.spawn("firefox") end,
+    awful.key({ modkey },            "b",     function () awful.util.spawn("brave") end,
               {description = "Browser", group = "launcher"}),
 		-- Wicd
 		awful.key({ modkey },            "w",     function () awful.util.spawn("wicd-client") end,
