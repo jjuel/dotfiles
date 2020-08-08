@@ -114,7 +114,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(" %a %b %d,%l:%M%P", 15)
+mytextclock = wibox.widget.textclock(" %a %b %d, %l:%M%P", 15)
 
 -- Create systray widget
 mysystray = wibox.widget.systray()
@@ -387,7 +387,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "p",     function () awful.util.spawn("rofi -show run") end,
               {description = "run dmenu", group = "launcher"}),
 		-- Browser
-    awful.key({ modkey },            "b",     function () awful.util.spawn("brave") end,
+    awful.key({ modkey },            "b",     function () awful.util.spawn("firefox") end,
               {description = "Browser", group = "launcher"}),
 		-- Wicd
 		awful.key({ modkey },            "w",     function () awful.util.spawn("wicd-client") end,
@@ -573,15 +573,13 @@ awful.rules.rules = {
 -- }}}
 
 -- {{{ Signals
--- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
-    -- Set the windows at the slave,
-    -- i.e. put it at the end of others instead of setting it master.
-    -- if not awesome.startup then awful.client.setslave(c) end
+    -- Set the window as a slave (put it at the end of others instead of setting it as master)
+    if not awesome.startup then
+        awful.client.setslave(c)
+    end
 
-    if awesome.startup
-      and not c.size_hints.user_position
-      and not c.size_hints.program_position then
+    if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
