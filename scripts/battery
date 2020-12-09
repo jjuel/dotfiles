@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -A _bat "" "" ""
+set -A _pwr ""
+
+[[ $(apm -a) -eq 1 ]] \
+    && echo -n "${_pwr[0]} " \
+    || echo -n "${_bat[$(apm -b)]} "
+echo -n "$(apm -l)%"
