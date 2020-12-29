@@ -1,0 +1,6 @@
+#!/bin/sh
+
+percent=$(brightnessctl | grep Current | awk '{print $4}' | tr -d "()")
+icon="🔅"
+
+echo "$icon $percent"

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
+    down)
+        wifiicon="📡 "
+        echo "$wifiicon" ;;
+    up)
+        ssid=$(iw dev | grep ssid | awk '{print $2}')
+        upicon="📶"
+        percent="$(awk '/^\s*w/ { print int($3 * 100 / 70) "%"}' /proc/net/wireless)"
+        echo "$upicon $ssid($percent)" ;;
+esac
+
