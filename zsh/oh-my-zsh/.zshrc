@@ -110,3 +110,8 @@ alias gd="git diff"
 alias gco="git checkout"
 alias gb="git branch"
 alias weather="curl wttr.in"
+
+export PATH="$HOME/opt/cross/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+
+eval "$(starship init zsh)"

@@ -57,5 +57,4 @@ abbr gb "git branch"
 
 abbr ll "ls -la"
 abbr la "ls -a"
-abbr sudo "doas"
 abbr gcc "egcc"
