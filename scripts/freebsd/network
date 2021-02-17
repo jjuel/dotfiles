@@ -1,0 +1,15 @@
+#!/usr/local/bin/bash
+
+_net=("🌐" "📶" "📡")
+_nic=("em0" "wlan0")
+
+_ssid=$(ifconfig ${_nic[1]} | awk '/ssid/ { print "📶 " $2 }')
+_rssi=$(ifconfig ${_nic[1]} list sta | awk '/cc:/ { sub(/\..*/, "", $5); print "(" $5 "%)" }') 
+
+  [[ -z "$(ifconfig ${_nic[0]} | grep 'status: no carrier')" ]] \
+    && (echo -n ${_net[0]} ; return)
+  if [[ -z "$(ifconfig ${_nic[1]} | grep 'status: no carrier')" ]] ; then
+    echo -n ${_ssid}${_rssi}
+  else
+    echo -n ${_net[2]} ; return
+  fi

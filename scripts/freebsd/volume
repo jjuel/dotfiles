@@ -1,0 +1,11 @@
+#!/usr/local/bin/bash
+
+_vol=("🔈" "🔉" "🔊")
+
+_v=$(mixer vol | awk '{ sub(/\:.*/, "", $7); print $7 }')
+_m=$(mixer pcm | awk '{ sub(/\:.*/, "", $7); print $7 }')
+
+[[ ${_m} -eq 0 ]] \
+  && echo -n "🔇 " \
+  || echo -n "${_vol[$(($_v*3/101))]} "
+echo -n "$_v%"

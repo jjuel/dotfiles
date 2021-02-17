@@ -1,0 +1,6 @@
+#!/usr/local/bin/bash
+
+percent=$(sysctl hw.acpi.video.lcd0.brightness | awk '{ print $2 }')
+icon="🔅"
+
+echo "$icon $percent"

@@ -1,0 +1,3 @@
+#!/usr/local/bin/bash
+
+mixer pcm | grep '0:0'; [ $? -eq 0 ] && mixer pcm 100 || mixer pcm 0
