@@ -66,4 +66,4 @@
     :major-modes '(zig-mode)
     :server-id 'zls)))
 
-(setq fancy-splash-image "~/Downloads/doom.png")
+(setq fancy-splash-image "~/.doom.d/splash_screens/doom.png")
