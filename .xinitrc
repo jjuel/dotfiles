@@ -5,6 +5,7 @@ nitrogen --restore &
 
 # ~/bin/startdwm &
 # slstatus &
+dwmblocks &
 
-exec awesome
-# exec dwm
+# exec awesome
+exec dwm

@@ -1,7 +1,8 @@
-if not set -q __fish_prompt_hostname
-	set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
-end
+# if not set -q __fish_prompt_hostname
+#	set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
+# end
 
+# set RUST_SRC_PATH ~/.local/src/rust
 # Fish git prompt
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate 'no'
@@ -56,3 +57,5 @@ abbr gb "git branch"
 
 abbr ll "ls -la"
 abbr la "ls -a"
+
+starship init fish | source

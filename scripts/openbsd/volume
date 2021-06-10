@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -A _vol "🔈" "🔉" "🔊"
+
+_v=$(sndioctl -n output.level | awk '{ print int($0*100) '})
+  [[ $(sndioctl -n output.mute) -eq 1 ]] \
+    && echo -n "🔇 " \
+    || echo -n "${_vol[$(($_v*3/101))]} "
+  echo -n "$_v%"

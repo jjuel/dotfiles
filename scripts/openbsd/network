@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -A _net "🌐" "📶" "📡"
+set -A _nic "em0" "iwm0"
+
+  [[ -z "$(ifconfig ${_nic[0]} | grep 'status: no carrier')" ]] \
+    && (echo -n ${_net[0]} ; return)
+  if [[ -z "$(ifconfig ${_nic[1]} | grep 'status: no network')" ]] ; then
+    echo -n $(ifconfig ${_nic[1]} | \
+      awk '/ieee80211:/ { print "📶 " $3 "(" $8 ")" }')
+  else
+    echo -n ${_net[2]} ; return
+  fi

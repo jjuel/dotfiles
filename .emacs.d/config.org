@@ -90,6 +90,7 @@
   :hook (go-mode . lsp-deferred))
 	:config 
 	(setq lsp-rust-server 'rust-analyzer)
+	(setq lsp-rust-src-path '("~/.local/src/rust/library"))
 	(setq lsp-rust-analyzer-server-command '("~/.cargo/bin/rust-analyzer"))
 (use-package company-lsp 
   :ensure t
