@@ -35,6 +35,7 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 
+(setq confirm-kill-emacs nil)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -52,3 +53,17 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(require 'lsp)
+(use-package! zig-mode
+  :hook ((zig-mode . lsp))
+  :custom (zig-format-on-save nil)
+  :init
+  (add-to-list 'lsp-language-id-configuration '(zig-mode . "zig"))
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection (lsp-stdio-connection "/home/jsj/.local/zls/zls")
+    :major-modes '(zig-mode)
+    :server-id 'zls)))
+
+(setq fancy-splash-image "~/.doom.d/splash_screens/doom.png")
