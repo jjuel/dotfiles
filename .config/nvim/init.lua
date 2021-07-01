@@ -17,15 +17,22 @@ require 'paq-nvim' {
 	'nvim-lua/popup.nvim';
 	'nvim-lua/plenary.nvim';
 	'nvim-telescope/telescope.nvim';
+	'windwp/nvim-autopairs';
 }
 
 g.mapleader = " "
+
+local on_attach = function(client, bufnr)
+	require'completion'.on_attach(client, bufnr)
+end
 
 local ts = require 'nvim-treesitter.configs'
 ts.setup {ensure_installed = 'maintained', highlight = {enable = true}}
 
 local lsp = require 'lspconfig'
-lsp.rust_analyzer.setup{}
+lsp.rust_analyzer.setup({ on_attach=on_attach })
+
+require('nvim-autopairs').setup()
 
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}
 opt.number = true
@@ -38,3 +45,5 @@ map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
 map('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 
+map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
+map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
