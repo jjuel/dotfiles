@@ -18,6 +18,9 @@ require 'paq-nvim' {
 	'nvim-lua/plenary.nvim';
 	'nvim-telescope/telescope.nvim';
 	'windwp/nvim-autopairs';
+	'navarasu/onedark.nvim';
+	'hoob3rt/lualine.nvim';
+	'kyazdani42/nvim-web-devicons';
 }
 
 g.mapleader = " "
@@ -33,7 +36,15 @@ local lsp = require 'lspconfig'
 lsp.rust_analyzer.setup({ on_attach=on_attach })
 
 require('nvim-autopairs').setup()
+require('lualine').setup{
+	options = {
+		theme = 'onedark',
+		component_separators = '',
+		section_separators = ''
+	}
+}
 
+cmd 'colorscheme onedark'
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}
 opt.number = true
 opt.relativenumber = true
