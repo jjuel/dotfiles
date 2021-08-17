@@ -12,26 +12,49 @@ local themes_path = gfs.get_themes_dir()
 local theme = {}
 
 theme.font          = "JetBrains Mono 10"
+theme.taglist_font  = "MesloLGS NF 26"
+-- Srcery colors.
+local srcery_colors = {}
+srcery_colors.black = "#1C1B19"
+srcery_colors.red = "#EF2F27"
+srcery_colors.green = "#519F50"
+srcery_colors.yellow = "#FBB829"
+srcery_colors.blue = "#2C78BF"
+srcery_colors.magenta = "#E02C6D"
+srcery_colors.cyan = "#0AAEB3"
+srcery_colors.white = "#D0BFA1"
+srcery_colors.brightblack = "#918175"
+srcery_colors.brightred = "#F75341"
+srcery_colors.brightgreen = "#98BC37"
+srcery_colors.brightyellow = "#FED06E"
+srcery_colors.brightblue = "#68A8E4"
+srcery_colors.brightmagenta = "#FF5C8F"
+srcery_colors.brightcyan = "#53FDE9"
+srcery_colors.brightwhite = "#FCE8C3"
+srcery_colors.darkwhite = "#B79C6E"
 
-theme.bg_normal     = "#ffffff"
--- theme.bg_focus      = "#535d6c"
-theme.bg_focus      = "#cccccc"
-theme.bg_urgent     = "#ffffff"
-theme.bg_minimize   = "#444444"
-theme.bg_systray    = theme.bg_normal
+-- Theme setting.
+theme.bg_normal = srcery_colors.black
+theme.bg_focus = srcery_colors.blue
+theme.bg_urgent = srcery_colors.brightred
+theme.bg_minimize = srcery_colors.brightblack
+theme.bg_systray = theme.bg_normal
 
-theme.fg_normal     = "#090909"
-theme.fg_focus      = "#090909"
-theme.fg_urgent     = "#090909"
-theme.fg_minimize   = "#090909"
+theme.fg_normal = srcery_colors.white
+theme.fg_focus = srcery_colors.brightwhite
+theme.fg_urgent = srcery_colors.brightwhite
+theme.fg_minimize = srcery_colors.brightwhite
 
-theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(1)
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
+theme.useless_gap = dpi(0)
+theme.border_width = dpi(1)
+theme.border_normal = srcery_colors.black
+theme.border_focus = srcery_colors.blue
+theme.border_marked = srcery_colors.magenta
 
-theme.widget_main_color = "#090909"
+theme.taglist_fg_focus = srcery_colors.blue
+theme.taglist_fg_occupied = srcery_colors.darkwhite
+theme.taglist_fg_urgent = srcery_colors.brightred
+theme.taglist_bg_focus = srcery_colors.black
 
 -- There are other variable sets
 -- overriding the default one when
@@ -47,13 +70,13 @@ theme.widget_main_color = "#090909"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(6)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
-)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
-)
+-- local taglist_square_size = dpi(6)
+-- theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
+--     taglist_square_size, theme.fg_normal
+-- )
+-- theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
+--     taglist_square_size, theme.fg_normal
+-- )
 
 -- Variables set for theming notifications:
 -- notification_font
@@ -74,33 +97,33 @@ theme.menu_width  = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"
+-- theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
+-- theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"
 
-theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus  = themes_path.."default/titlebar/minimize_focus.png"
+-- theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
+-- theme.titlebar_minimize_button_focus  = themes_path.."default/titlebar/minimize_focus.png"
 
-theme.titlebar_ontop_button_normal_inactive = themes_path.."default/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive  = themes_path.."default/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_active = themes_path.."default/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active  = themes_path.."default/titlebar/ontop_focus_active.png"
+-- theme.titlebar_ontop_button_normal_inactive = themes_path.."default/titlebar/ontop_normal_inactive.png"
+-- theme.titlebar_ontop_button_focus_inactive  = themes_path.."default/titlebar/ontop_focus_inactive.png"
+-- theme.titlebar_ontop_button_normal_active = themes_path.."default/titlebar/ontop_normal_active.png"
+-- theme.titlebar_ontop_button_focus_active  = themes_path.."default/titlebar/ontop_focus_active.png"
 
-theme.titlebar_sticky_button_normal_inactive = themes_path.."default/titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive  = themes_path.."default/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active = themes_path.."default/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active  = themes_path.."default/titlebar/sticky_focus_active.png"
+-- theme.titlebar_sticky_button_normal_inactive = themes_path.."default/titlebar/sticky_normal_inactive.png"
+-- theme.titlebar_sticky_button_focus_inactive  = themes_path.."default/titlebar/sticky_focus_inactive.png"
+-- theme.titlebar_sticky_button_normal_active = themes_path.."default/titlebar/sticky_normal_active.png"
+-- theme.titlebar_sticky_button_focus_active  = themes_path.."default/titlebar/sticky_focus_active.png"
 
-theme.titlebar_floating_button_normal_inactive = themes_path.."default/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive  = themes_path.."default/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_active = themes_path.."default/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active  = themes_path.."default/titlebar/floating_focus_active.png"
+-- theme.titlebar_floating_button_normal_inactive = themes_path.."default/titlebar/floating_normal_inactive.png"
+-- theme.titlebar_floating_button_focus_inactive  = themes_path.."default/titlebar/floating_focus_inactive.png"
+-- theme.titlebar_floating_button_normal_active = themes_path.."default/titlebar/floating_normal_active.png"
+-- theme.titlebar_floating_button_focus_active  = themes_path.."default/titlebar/floating_focus_active.png"
 
-theme.titlebar_maximized_button_normal_inactive = themes_path.."default/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
+-- theme.titlebar_maximized_button_normal_inactive = themes_path.."default/titlebar/maximized_normal_inactive.png"
+-- theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar/maximized_focus_inactive.png"
+-- theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
+-- theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = themes_path.."default/background.png"
+-- theme.wallpaper = themes_path.."default/background.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
