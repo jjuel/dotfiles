@@ -9,19 +9,37 @@ local function map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-require 'paq-nvim' {
-	'savq/paq-nvim';
-	'neovim/nvim-lspconfig';
-	'nvim-lua/completion-nvim';
-	'nvim-treesitter/nvim-treesitter';
-	'nvim-lua/popup.nvim';
-	'nvim-lua/plenary.nvim';
-	'nvim-telescope/telescope.nvim';
-	'windwp/nvim-autopairs';
-	'navarasu/onedark.nvim';
-	'hoob3rt/lualine.nvim';
-	'kyazdani42/nvim-web-devicons';
-}
+require('packer').startup(function()
+	local use = require('packer').use
+
+	use({
+		'wbthomason/packer.nvim',
+		'nvim-lua/completion-nvim',
+		'nvim-lua/popup.nvim',
+		'nvim-lua/plenary.nvim',
+		'nvim-telescope/telescope.nvim',
+		'neovim/nvim-lspconfig',
+		'nvim-treesitter/nvim-treesitter',
+		'windwp/nvim-autopairs',
+		'hoob3rt/lualine.nvim',
+		'kyazdani42/nvim-web-devicons',
+		'srcery-colors/srcery-vim',
+	})
+end)
+
+-- require 'paq-nvim' {
+-- 	'savq/paq-nvim';
+-- 	'neovim/nvim-lspconfig';
+-- 	'nvim-lua/completion-nvim';
+-- 	'nvim-treesitter/nvim-treesitter';
+-- 	'nvim-lua/popup.nvim';
+-- 	'nvim-lua/plenary.nvim';
+-- 	'nvim-telescope/telescope.nvim';
+-- 	'windwp/nvim-autopairs';
+-- 	'navarasu/onedark.nvim';
+-- 	'hoob3rt/lualine.nvim';
+-- 	'kyazdani42/nvim-web-devicons';
+-- }
 
 g.mapleader = " "
 
