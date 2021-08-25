@@ -114,4 +114,6 @@ alias weather="curl wttr.in"
 export PATH="$HOME/opt/cross/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 
+export SHELL="/bin/zsh"
+
 eval "$(starship init zsh)"
