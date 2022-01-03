@@ -1,11 +1,4 @@
 #! /bin/sh
-
-# compton -b &
-# nitrogen --restore &
-
-# ~/bin/startdwm &
-# slstatus &
-# dwmblocks &
+[ -f ~/.xprofile ] && . ~/.xprofile
 
 exec awesome
-# exec dwm

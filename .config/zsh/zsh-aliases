@@ -1,0 +1,24 @@
+TREE_IGNORE="cache|log|logs|node_modules|vendor|.git"
+
+alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
+
+alias v="nvim"
+alias sv="doas nvim"
+alias ll="exa --long --git --header --all"                                               
+alias ls="exa"
+alias la="exa --all"
+alias lt="exa --tree --header --long --git --all"
+
+alias g="git"                                                                            
+alias gs="git status"                                                                    
+alias ga="git add"                                                                       
+alias gpl="git pull"                                                                     
+alias gpu="git push"                                                                     
+alias gcm="git commit -m"                                                                
+alias gd="git diff"                                                                      
+alias gco="git checkout"                                                                 
+alias gb="git branch"                                                                    
+alias weather="curl wttr.in"
+
+# For when keys break
+alias archlinux-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"

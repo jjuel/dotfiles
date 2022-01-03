@@ -265,8 +265,10 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
+    awful.key({ modkey,           }, "w", function () awful.spawn('brave') end,
+              {description = "Show web browser", group = "launcher"}),
+    awful.key({ modkey,           }, "e", function () awful.spawn('emacs') end,
+              {description = "Launch emacs", group = "launcher"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -326,8 +328,11 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.spawn('rofi -show combi') end,
+    awful.key({ modkey },            "r",     function () awful.spawn('rofi -show drun') end,
               {description = "Show Rofi Menu", group = "launcher"}),
+
+    awful.key({ modkey, "Shift" },   "w",     function () awful.spawn('rofi -show window') end,
+              {description = "Show Rofi Window Menu", group = "launcher"}),
 
     awful.key({ modkey }, "x",
               function ()
